@@ -55,11 +55,11 @@ class syntax_plugin_hidepages extends DokuWiki_Syntax_Plugin {
         if($mode == "metadata") {
             // set flag in metadata to hide page in action component
             if(!is_array($data)) {
-                $renderer->meta['hidepage_sitemap'] = true;
-                $renderer->meta['hidepage_search'] = true;
+                $renderer->meta['hidepage']['sitemap'] = true;
+                $renderer->meta['hidepage']['search'] = true;
             } else {
-                if(in_array('sitemap', $data)) $renderer->meta['hidepage_sitemap'] = true;
-                if(in_array('search', $data))  $renderer->meta['hidepage_search'] = true;
+                if(in_array('sitemap', $data)) $renderer->meta['hidepage']['sitemap'] = true;
+                if(in_array('search', $data))  $renderer->meta['hidepage']['search'] = true;
             }
         }
         return true;

@@ -33,20 +33,21 @@ class action_plugin_hidepages extends DokuWiki_Action_Plugin {
         // skip if page is already marked as hidden or when the admin wants to see all pages
         if($isHidden || $this->getConf('ignorepattern')) return true;
 
-        $metaSearch = (p_get_metadata($pageID, 'hidepage_search') ? true : false);
-        $metaSitemap = (p_get_metadata($pageID, 'hidepage_sitemap') ? true : false);
+        $metaHidden = p_get_metadata($pageID, 'hidepage');
+        $metaHiddenSearch = (isset($metaHidden['search']) ? true : false);
+        $metaHiddenSitemap = (isset($metaHidden['sitemap']) ? true : false);
 
         // check if event is fired by quicksearch or sitemap ajax request
         $isQsearch = ($INPUT->post->str('call') == 'qsearch' ? true : false);
         $isAjaxIndex = ($INPUT->post->str('call') == 'index' ? true : false);
 
         // Hide pages from quicksearch and search result page
-        if(($ACT == 'search' || $isQsearch) && $metaSearch == true) {
+        if(($ACT == 'search' || $isQsearch) && $metaHiddenSearch == true) {
             if($conf['allowdebug']) dbg("hidepages plugin - suppressed page: " . $pageID);
             $event->data['hidden'] = true;
         }
 
-        if(($ACT == 'index' || $isAjaxIndex) && $metaSitemap == true) {
+        if(($ACT == 'index' || $isAjaxIndex) && $metaHiddenSitemap   == true) {
             if($conf['allowdebug']) dbg("hidepages plugin - suppressed page: " . $pageID);
             $event->data['hidden'] = true;
         }
