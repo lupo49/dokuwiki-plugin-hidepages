@@ -1,0 +1,7 @@
+base   hidepages
+author Matthias Schulte
+email  dokuwiki@lupo49.de
+date   2013-08-02
+name   hidepages plugin
+desc   Hide pages from search results and/or sitemap
+url    https://www.dokuwiki.org/plugin:hidepages
