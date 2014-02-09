@@ -20,7 +20,7 @@ class syntax_plugin_hidepages extends DokuWiki_Syntax_Plugin {
     function getSort(){ return 990; }
  
     function connectTo($mode) {
-        $this->Lexer->addSpecialPattern('~~HIDEPAGE.*~~', $mode, 'plugin_hidepages');
+        $this->Lexer->addSpecialPattern('~~HIDEPAGE.*?~~', $mode, 'plugin_hidepages');
     }
  
     function handle($match, $state, $pos, &$handler){
