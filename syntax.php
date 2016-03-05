@@ -23,7 +23,7 @@ class syntax_plugin_hidepages extends DokuWiki_Syntax_Plugin {
         $this->Lexer->addSpecialPattern('~~HIDEPAGE.*?~~', $mode, 'plugin_hidepages');
     }
  
-    function handle($match, $state, $pos, &$handler){
+    function handle($match, $state, $pos, Doku_Handler $handler){
         $data = array();
         $match = hsc(trim($match));
 
@@ -51,7 +51,7 @@ class syntax_plugin_hidepages extends DokuWiki_Syntax_Plugin {
         return $data;
     }
 
-    function render($mode, &$renderer, $data) {
+    function render($mode, Doku_Renderer $renderer, $data) {
         if($mode == "metadata") {
             // set flag in metadata to hide page in action component
             if(!is_array($data)) {
